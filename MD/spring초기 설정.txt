@@ -1,0 +1,43 @@
+java설치
+apache 다운로드 설치
+이클립스/intellij 설치
+
+이클립스에 톰켓 연동
+Window->Show View->Servers->
+
+No servers are available. Click this link to create a new server... 클릭
+
+Apache선택->Tomcat v8.5 server 선택 -> server hostname, servername 입력 
+Next -> 톰캣 바이너리 디렉터리 지정 -> JRE: 직접 지정 -> Next -> Add All -> Finish
+
+-------------------------------------------------
+이클립스->Spring Tool Suite 설치 
+File->New->Project->Other-> Spring->Spring Legacy -> Spring MVC ->
+
+인텔리제이 -> File -> New -> Maven Project -> GroupId 등등 을 마음대로 입력 
+-------------------------------------------------
+
+프로젝트 우클릭->Properties
+	1) Project Facets->Java->1.8
+	2) 우측화면 -> Runtimes 탭 클릭 -> Apache Tomcat v8.5 체크 (방금전 등록한 거임)
+
+
+src/main/resources 폴더에 log4j.xml을 제외한 나머지는 모두 삭제
+src/main/webapp/WEB-INF 아래에 있는 spring, view 폴더를 삭제 한다.
+
+src/main/WEB-INF/web.xml 에서 <web-app> 루트 엘리먼트를 제외한 나머지 설정 모두 삭제 후 저장
+(web.xml의 web-app 엘리먼트 내부의 모든 내용들 지운다. (기본으로 Spring DispatcherServlet관련설정 되어 있음)
+
+-------------------------------------------------
+pom.xml 의 Spring 버전, java 버전을 최신으로 변경
+(이클립스의 경우는 자동으로 모두 입력되어 있다.)
+-------------------------------------------------
+
+이클립스의 Servers 탭을 열어서 server.xml 파일을 열어서 로딩시 브라우저에 출력될 url경로를 바꿔준다.
+<Context docBase="/원하는 이름" path="/원하는경로/원하는 경로..." reloadable="true", source="...."/></Host>
+
+
+
+
+
+
