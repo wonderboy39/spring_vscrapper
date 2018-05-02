@@ -20,5 +20,6 @@
 	</environments>
 	<mappers>
 		<mapper resource="sql/vboard.xml" />
+		<mapper resource="sql/users.xml" />
 	</mappers>
 </configuration>
