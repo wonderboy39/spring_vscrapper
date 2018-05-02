@@ -21,7 +21,8 @@
 7. (어노테이션을 사용하지 않을 경우) presentation-layer.xml 에 직접 만든 Controller 클래스 등록
 8. (어노테이션을 사용하지 않을 경우) 6.에 등록한 Controller 클래스 코딩
 9. **(어노테이션) presentation-layer.xml 설정**
-10. (어노테이션)
+10. **(어노테이션) 리소스 이동(jsp파일들을 모두 src/main/webapp 밑으로 이동)**
+11. **(어노테이션) @Controller, @RequestMapping, 요청처리로직 작성**
 
 
 
@@ -272,7 +273,7 @@ HandlerMapping으로는 springframework의 SimpleUrlHandlerMapping클래스를 �
 
 
 
-## 8.(어노테이션) presentation-layer.xml 설정
+## 9.(어노테이션) presentation-layer.xml 설정
 
 - xmlns:context=xmlns:context="http://www.springframework.org/schema/context"
 - xsi:schemaLocation에는 아래 두개의 URL을 추가해준다.
@@ -287,12 +288,84 @@ HandlerMapping으로는 springframework의 SimpleUrlHandlerMapping클래스를 �
 **presentation-layer.xml**  
 
 ```xml
-
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+	<context:component-scan base-package="com.spring.scrapper"></context:component-scan>
+</beans>
 ```
 
 
 
+## 10. (어노테이션) 리소스 이동(jsp파일들을 모두 src/main/webapp 밑으로 이동)
 
+  
 
+## 11. (어노테이션) @Controller, @RequestMapping, 요청처리로직 작성
 
+여기서는 간단한 샘플코드만을 정리해보고자 한다.  
+
+**src/main/java/com/spring/scrapper/vboard/insertBoardController.java**  
+
+```java
+package com.spring.scrapper.vboard;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.spring.scrapper.vboard.vo.VBoardVO;
+
+@Controller
+public class InsertBoardController {
+	
+	@RequestMapping(value="/insertBoard.do")
+	public String insertBoard(VBoardVO vo, VBoardDAO boardDAO){
+		boolean result = false;
+		try {
+			result = boardDAO.insertVBoard(vo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(result){
+			return "getBoardList.do";						
+		}else{
+			return "insertBoard.do";
+		}
+	}
+}
+```
+
+사실 VBoardDAO와 같은 DAO 타입의 매개변수를 취하지 않고 @Autowired 어노테이션을 사용해도 된다.하지만, 여기서는 DAO객체를 Command객체와 마찬가지로 매개변수로 선언하면 스프링 컨테이너가 해당객체를 생성해 전달해 준다는 것을 정리하기 위해 예제로 남겨봤다.  
+
+  
+
+Controller메소드가 실행되고 View 경로를 리턴하면 기본이 포워딩 방식이므로 글 등록 후에 목록화면에 출력되도 브라우저의 URL은 변경되지 않는다.  
+
+http://localhost:8080/boardSample/insertBoard.do  
+
+따라서 포워딩이 아니라 리다이렉트를 원할 경우 "redirect:"라는 접두사를 붙여야한다.  
+
+ex)  
+
+```java
+@RequestMapping(value="/insertBoard.do")
+public String insertBoard(VBoardVO vo, VBoardDAO boardDAO){
+    boardDAO.insertVBoard(vo);
+    return "redirect:getBoardList.do";
+}
+```
+
+위와 같이 작성하면 글 등록 처리 후 getBoardList.do로 리다이렉트 되고, 최종 URL은 아래와 같이  
+
+http://localhost:80080/boardSample/getBoardList.do  
+
+가 된다.  
+
+어노테이션 기반의 게시판 개발방식은 SpringMVC_annotation.md 에서 따로 정리할예정이다.  
 
