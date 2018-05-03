@@ -1,7 +1,11 @@
 package com.spring.scrapper.users;
 
-import com.spring.scrapper.dao.CommonDAO;
+import org.springframework.stereotype.Repository;
 
+import com.spring.scrapper.dao.CommonDAO;
+import com.spring.scrapper.users.vo.UserVO;
+
+@Repository
 public class UserDAOImpl extends CommonDAO implements UserDAO{
 
 	@Override
@@ -10,8 +14,8 @@ public class UserDAOImpl extends CommonDAO implements UserDAO{
 	}
 
 	@Override
-	public UserVO getUser(UserVO vo) throws Exception {
-		return super.getSession().selectOne("users.getUser", vo);
+	public UserVO selectUser(UserVO vo) throws Exception {
+		return super.getSession().selectOne("users.selectUser", vo);
 	}
 
 }

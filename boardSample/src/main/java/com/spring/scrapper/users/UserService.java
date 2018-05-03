@@ -1,8 +1,11 @@
 package com.spring.scrapper.users;
 
-public interface UserService {
+import com.spring.scrapper.users.vo.UserVO;
 
-	UserVO getUser(UserVO vo);
-	public void insertUser(UserVO vo);
+public interface UserService {
+	
+	public UserVO selectUser(UserVO vo);
+	
+	public boolean insertUser(UserVO vo);
 
 }

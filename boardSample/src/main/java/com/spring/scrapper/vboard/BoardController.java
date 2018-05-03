@@ -1,5 +1,6 @@
 package com.spring.scrapper.vboard;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,6 +13,10 @@ import com.spring.scrapper.vboard.vo.VBoardVO;
 
 @Controller
 public class BoardController {
+	
+	@Autowired
+	private VBoardDAO boardDAO;
+	
 	@RequestMapping(value="/insertBoard.do")
 	public String insertBoard(VBoardVO vo, VBoardDAO dao) {
 		boolean result = false;
@@ -32,12 +37,12 @@ public class BoardController {
 	public ModelAndView getBoardList(
 			@RequestParam(value="searchCondition" ,defaultValue="TITLE", required=false) String condition,
 			@RequestParam(value="searchKeyword", defaultValue="", required=false) String keyword,
-			VBoardVO vo, VBoardDAO dao, ModelAndView mav
+			VBoardVO vo, ModelAndView mav
 			){
 		System.out.println("검색조건 : " + condition);
 		System.out.println("검색단어 : " + keyword);
 		try {
-			mav.addObject("boardList", dao.selectVBoardList(vo));	// Model 정보 저장 
+			mav.addObject("boardList", boardDAO.selectVBoardList(vo));	// Model 정보 저장 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

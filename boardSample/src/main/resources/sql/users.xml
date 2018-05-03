@@ -2,40 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="vboard">
+<mapper namespace="users">
 	<!-- <resultMap type="#modelname" id="YourResultSet"> <id property="param1" 
 		column="columnname1" /> <result property="param2" column="columnname2" /> 
 		<result property="param3" column="columnname3" /> </resultMap> -->
 
-	<select id="getVBoardList" resultType="com.spring.scrapper.vboard.vo.VBoardVO">
-		SELECT * FROM VBoard
+	<select id="selectUser" parameterType="java.util.HashMap" resultType="com.spring.scrapper.users.vo.UserVO">
+		SELECT * FROM Users WHERE id=#{id} AND password=#{password}
 	</select>
-
-	<select id="getVBoard" parameterType="java.util.HashMap">
-		SELECT * FROM VBoard WHERE
-		seq=#{seq}
-	</select>
-
+	
 	<insert id="insertVBoard" parameterType="java.util.HashMap">
 		INSERT INTO VBoard(
-			title, writer, writer_id, content, url, regDate, cnt
+			id, name, password, role
 		)
 		VALUES(
-			#{title}, #{writer}, #{writer_id}, #{content}, #{url}, #{regDate}, #{cnt}
+			#{id}, #{name}, #{password}, #{role}
 		)
 	</insert>
-
-	<update id="updateVBoard" parameterType="java.util.HashMap">
-		UPDATE VBoard
-		SET title=#{title}, writer=#{writer}, writer_id=#{writer_id},
-		content=#{content}, url=#{url}, regDate=#{regDate}, cnt=#{cnt}
-		WHERE
-		seq=#{seq}
-	</update>
-
-	<delete id="deleteBoard" parameterType="int">
-		DELETE FROM VBoard WHERE
-		seq=#{seq}
-	</delete>
-
 </mapper>

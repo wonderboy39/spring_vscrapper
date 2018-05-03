@@ -7,7 +7,7 @@
 		column="columnname1" /> <result property="param2" column="columnname2" /> 
 		<result property="param3" column="columnname3" /> </resultMap> -->
 
-	<select id="getVBoardList" resultType="com.spring.scrapper.vboard.vo.VBoardVO">
+	<select id="selectVBoardList" resultType="com.spring.scrapper.vboard.vo.VBoardVO">
 		SELECT * FROM VBoard
 	</select>
 

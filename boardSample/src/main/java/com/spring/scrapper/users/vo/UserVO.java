@@ -1,4 +1,4 @@
-package com.spring.scrapper.users;
+package com.spring.scrapper.users.vo;
 
 public class UserVO {
 	//eclipse 자동 getter/setter 생성 단축키 : Command + option + s

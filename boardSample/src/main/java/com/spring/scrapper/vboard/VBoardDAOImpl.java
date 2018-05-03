@@ -5,9 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
+
 import com.spring.scrapper.dao.CommonDAO;
 import com.spring.scrapper.vboard.vo.VBoardVO;
 
+@Repository
 public class VBoardDAOImpl extends CommonDAO implements VBoardDAO{
 
 	@Override
@@ -18,7 +21,7 @@ public class VBoardDAOImpl extends CommonDAO implements VBoardDAO{
 
 	@Override
 	public List<VBoardVO> selectVBoardList(VBoardVO vo) throws Exception {
-		return super.getSession().selectList("vboard.getVBoardList");
+		return super.getSession().selectList("vboard.selectVBoardList");
 	}
 
 	@Override
