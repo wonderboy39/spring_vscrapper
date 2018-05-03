@@ -75,7 +75,6 @@ public class BoardController {
 		try {
 			result = dao.updateVBoard(vo);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
