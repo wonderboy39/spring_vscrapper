@@ -1,6 +1,5 @@
 <%@page import="com.spring.scrapper.vboard.vo.VBoardVO"%>
 <%@page import="java.util.List"%>
-<%-- <%@page import="com.spring.scrapper.biz.vboard.impl.VBoardDAO"%> --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -23,17 +22,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<%-- <%
-	request.setCharacterEncoding("utf-8");
-//	int pageCnt = VBoardDAO
-	VBoardDAO boardDAO = new VBoardDAO();
-	// 추후 페이징 처리 적용
-	// 참고 url : https://github.com/wonderboy39/Model2/blob/master/miracle/WebContent/listAllWithPaging.jsp
-	List<VBoardVO> contents = null;
-	contents = boardDAO.getBoardList(new VBoardVO());
-	session.setAttribute("contents", contents);
-%> --%>
-
+<!-- // 참고 url : https://github.com/wonderboy39/Model2/blob/master/miracle/WebContent/listAllWithPaging.jsp -->
 	<h5>
 		접속 사용자 :
 		<%=session.getAttribute("idKey")%>
@@ -76,7 +65,7 @@
 						<c:forEach var="item" items="${boardList}" varStatus="status">
 							<tr>
 								<td>${item.seq}</td>
-								<td><a href="getBoard.do?seq=${item.seq}">${item.title }
+								<td><a href="getBoard.do?seq=${item.seq}">${item.title}
 								</a></td>
 								<td>${item.writer}</td>
 							</tr>

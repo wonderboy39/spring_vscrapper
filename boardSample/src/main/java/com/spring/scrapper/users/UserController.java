@@ -30,7 +30,6 @@ public class UserController {
 		
 		if(user!=null){
 			session.setAttribute("idKey", user.getId());
-			System.out.println("Complete---------");
 			return "redirect:getBoardList.do";
 		}
 		else{

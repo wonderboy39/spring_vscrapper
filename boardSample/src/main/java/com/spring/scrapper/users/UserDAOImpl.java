@@ -1,5 +1,8 @@
 package com.spring.scrapper.users;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.stereotype.Repository;
 
 import com.spring.scrapper.dao.CommonDAO;
@@ -15,7 +18,10 @@ public class UserDAOImpl extends CommonDAO implements UserDAO{
 
 	@Override
 	public UserVO selectUser(UserVO vo) throws Exception {
-		return super.getSession().selectOne("users.selectUser", vo);
+		Map<String, Object> parameterMap = new HashMap<String, Object>();
+		parameterMap.put("id", vo.getId());
+		parameterMap.put("password", vo.getPassword());
+		return super.getSession().selectOne("users.selectUser", parameterMap);
 	}
 
 }

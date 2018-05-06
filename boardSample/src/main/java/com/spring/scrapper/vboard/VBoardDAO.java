@@ -10,7 +10,7 @@ public interface VBoardDAO {
 	public List<VBoardVO> selectVBoardList(VBoardVO vo) throws Exception;
 
 	public boolean insertVBoard(VBoardVO vo) throws Exception;
-
+	
 	public boolean updateVBoard(VBoardVO vo) throws Exception;
 
 	public boolean deleteVBoard(VBoardVO vo) throws Exception;

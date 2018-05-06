@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.spring.scrapper.dao.CommonDAO;
@@ -16,6 +17,7 @@ public class VBoardDAOImpl extends CommonDAO implements VBoardDAO{
 	@Override
 	public VBoardVO selectVBoard(VBoardVO vo) throws Exception {
 		Map<String, Object> parameterMap = new HashMap<>();
+		parameterMap.put("seq", vo.getSeq());
 		return super.getSession().selectOne("vboard.getVBoard", parameterMap);
 	}
 
@@ -36,11 +38,29 @@ public class VBoardDAOImpl extends CommonDAO implements VBoardDAO{
 		parameterMap.put("writer_id", "test1");
 		return super.getSession().insert("vboard.insertVBoard", parameterMap) >0 ? true : false;
 	}
-
+	
 	@Override
-	public boolean updateVBoard(VBoardVO vo) throws Exception {
+	public boolean updateVBoard(VBoardVO vo) throws Exception{
 		Map<String, Object> parameterMap = new HashMap<>();
-		return super.getSession().update("vboard.updateVBoard", parameterMap) > 0 ? true : false;
+		parameterMap.put("title", vo.getTitle());
+		parameterMap.put("writer", vo.getWriter());
+		parameterMap.put("content", vo.getContent());
+		parameterMap.put("url", vo.getUrl());
+		parameterMap.put("cnt", vo.getCnt());
+		parameterMap.put("regdate", new Date());
+		parameterMap.put("writer_id", vo.getWriter_id());
+		int result = -1;
+		try{
+			SqlSession session = super.getSession();
+			result = session.insert("vboard.updateVBoard", parameterMap);
+			session.commit();
+			session.toString();
+//			result = super.getSession().insert("vboard.updateVBoard", parameterMap);
+		}
+		catch (Exception e) {
+			System.out.println("MYBATIS ERROR ... ");
+		}
+		return result > 0 ? true : false;
 	}
 
 	@Override

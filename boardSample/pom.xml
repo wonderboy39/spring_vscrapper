@@ -126,26 +126,23 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>5.0.0.RELEASE</version>
 		</dependency>
-		
+
 		<!-- 2) JdbcTemplate클래스 의존성 추가 (commons-dbcp 또는 commons-dbcp2 추가) -->
 		<!-- jdbcTemplate 공부하면서 추가한 dependency -->
 		<!-- dbcp2 버전이다. 추후 적용하기로 하고 우선은 책의 예제에 최대한 맞춰나가는 방향으로 결정 -->
 		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2 -->
-		<dependency> 
-			<groupId>org.apache.commons</groupId> 
-			<artifactId>commons-dbcp2</artifactId> 
-			<version>2.1.1</version> 
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-dbcp2</artifactId>
+			<version>2.1.1</version>
 		</dependency>
 
 		<!-- jdbcTemplate 공부하면서 추가한 dependency -->
 		<!-- 위에서는 2.1.1버전을 설치하는 것으로 했었지만 책의 예제에서는 1.4버전을 사용한다. -->
 		<!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
-		<!-- <dependency>
-			<groupId>commons-dbcp</groupId>
-			<artifactId>commons-dbcp</artifactId>
-			<version>1.4</version>
-		</dependency> -->
-		
+		<!-- <dependency> <groupId>commons-dbcp</groupId> <artifactId>commons-dbcp</artifactId> 
+			<version>1.4</version> </dependency> -->
+
 		<!-- mariadb -->
 		<!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
 		<dependency>
@@ -169,6 +166,15 @@
 			<artifactId>ibatis-core</artifactId>
 			<version>3.0</version>
 		</dependency>
+
+		<!-- log4jdbc -->
+		<!-- <dependency>
+			<groupId>org.bgee.log4jdbc-log4j2</groupId>
+			<artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
+			<version>1.16</version>
+		</dependency> -->
+		<!-- <dependency> <groupId>com.googlecode.log4jdbc</groupId> <artifactId>log4jdbc</artifactId> 
+			<version>1.2</version> </dependency> -->
 
 	</dependencies>
 	<build>

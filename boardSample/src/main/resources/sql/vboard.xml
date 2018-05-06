@@ -8,12 +8,14 @@
 		<result property="param3" column="columnname3" /> </resultMap> -->
 
 	<select id="selectVBoardList" resultType="com.spring.scrapper.vboard.vo.VBoardVO">
-		SELECT * FROM VBoard
+		SELECT * 
+		FROM VBoard
 	</select>
 
-	<select id="getVBoard" parameterType="java.util.HashMap">
-		SELECT * FROM VBoard WHERE
-		seq=#{seq}
+	<select id="getVBoard" parameterType="java.util.HashMap" resultType="com.spring.scrapper.vboard.vo.VBoardVO">
+		SELECT 	* 
+		FROM	VBoard 
+		WHERE 	seq=#{seq}
 	</select>
 
 	<insert id="insertVBoard" parameterType="java.util.HashMap">
@@ -21,21 +23,21 @@
 			title, writer, writer_id, content, url, regDate, cnt
 		)
 		VALUES(
-			#{title}, #{writer}, #{writer_id}, #{content}, #{url}, #{regDate}, #{cnt}
+			#{title}, #{writer}, #{writer_id}, #{content}, #{url}, #{regdate}, #{cnt}
 		)
 	</insert>
 
 	<update id="updateVBoard" parameterType="java.util.HashMap">
-		UPDATE VBoard
-		SET title=#{title}, writer=#{writer}, writer_id=#{writer_id},
-		content=#{content}, url=#{url}, regDate=#{regDate}, cnt=#{cnt}
-		WHERE
-		seq=#{seq}
+		UPDATE 	VBoard
+		SET 	title=#{title}, writer=#{writer}, writer_id=#{writer_id},
+				content=#{content}, url=#{url}, regDate=#{regDate}, cnt=#{cnt}
+		WHERE 	seq=#{seq}
 	</update>
 
 	<delete id="deleteBoard" parameterType="int">
-		DELETE FROM VBoard WHERE
-		seq=#{seq}
+		DELETE 
+		FROM VBoard 
+		WHERE seq=#{seq}
 	</delete>
 
 </mapper>
