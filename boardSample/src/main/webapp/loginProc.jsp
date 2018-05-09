@@ -1,9 +1,9 @@
-<%@page import="com.spring.scrapper.biz.users.UserDAO"%>
-<%@page import="com.spring.scrapper.biz.users.UserVO"%>
+<%-- <%@page import="com.spring.scrapper.biz.users.UserDAO"%>
+<%@page import="com.spring.scrapper.biz.users.UserVO"%> --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String id = request.getParameter("id");
+/* 	String id = request.getParameter("id");
 	String password = request.getParameter("password");
 	
 	UserVO req_vo = new UserVO();
@@ -20,5 +20,5 @@
 	}
 	else{
 		response.sendRedirect("login.jsp");
-	}
+	} */
 %>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<!-- log4j -->
+	<!-- <context-param> <param-name>log4jConfigLocation</param-name> <param-value>classpath:log/log4j.xml</param-value> 
+		</context-param> -->
+
+	<!-- log4j RefreshInterval 세팅 -->
+	<!-- log4j.xml에서 level이나 로그 출력 패턴 변경을 하면 자동 리프레쉬 된다. -->
+	<!-- 
+	<context-param> 
+		<param-name>log4jRefreshInterval</param-name> 
+		<param-value>60000</param-value>
+	</context-param> 
+	<listener> 
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class> 
+	</listener> 
+	 -->
+	 
+	<bean id="dataSourceSpied" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close"> 
+		<property name="driverClassName" value="org.mariadb.jdbc.Driver"></property> 
+		<property name="url" value="jdbc:mariadb://localhost:3306/scrapper"></property> 
+		<property name="username" value="scrapper"></property> 
+		<property name="password" value="1111"></property> 
+	</bean> 
+	<!-- jdbc-remix --> 
+	<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource"> 
+		<constructor-arg ref="dataSourceSpied" /> 
+		<property name="logFormatter"> 
+			<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter"> 
+				<property name="loggingType" value="MULTI_LINE" /> 
+				<property name="sqlPrefix" value="SQL:::" /> 
+			</bean> 
+		</property> 
+	</bean> 
+		
+	<!-- 
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.mariadb.jdbc.Driver" />
+		<property name="url" value="jdbc:mariadb://localhost:3306/scrapper" />
+		<property name="username" value="scrapper" />
+		<property name="password" value="1111" />
+	</bean>
+	 -->
+	 		
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:config/mybatis-config.xml" />
+		<property name="mapperLocations" value="classpath:sql/**/*.xml" />
+	</bean>
+
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+</beans>

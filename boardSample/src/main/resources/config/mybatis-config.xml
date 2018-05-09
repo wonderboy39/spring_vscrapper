@@ -3,11 +3,11 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<properties resource="config/db.properties" />
-	<typeAliases>
-		<!-- <typeAlias type="#package.#modelname" alias="#modelname"></typeAlias> -->
-	</typeAliases>
-	<environments default="development">
+	<!-- <properties resource="config/db.properties" /> -->
+	<!-- <typeAliases>
+		<typeAlias type="#package.#modelname" alias="#modelname"></typeAlias>
+	</typeAliases> -->
+<!-- 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
@@ -17,9 +17,9 @@
 				<property name="password" value="${jdbc.password}" />
 			</dataSource>
 		</environment>
-	</environments>
-	<mappers>
+	</environments> -->
+	<!-- <mappers>
 		<mapper resource="sql/vboard.xml" />
 		<mapper resource="sql/users.xml" />
-	</mappers>
-</configuration>
+	</mappers>  -->
+</configuration> 

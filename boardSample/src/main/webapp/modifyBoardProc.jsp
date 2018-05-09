@@ -1,8 +1,8 @@
-<%@page import="com.spring.scrapper.biz.vboard.impl.VBoardDAO"%>
-<%@page import="com.spring.scrapper.biz.vboard.VBoardVO"%>
+<%-- <%@page import="com.spring.scrapper.biz.vboard.impl.VBoardDAO"%>
+<%@page import="com.spring.scrapper.biz.vboard.VBoardVO"%> --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
+<%-- <%
 	request.setCharacterEncoding("utf-8");
 	VBoardVO vo = new VBoardVO();
 	vo.setTitle(request.getParameter("title"));
@@ -16,4 +16,4 @@
 	dao.updateBoard(vo);
 	
 	response.sendRedirect("getBoardList.jsp");
-%>
+%> --%>
